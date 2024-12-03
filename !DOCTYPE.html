@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Affiliate Products</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .search-container {
+      margin: 10px;
+      padding: 10px;
+    }
+    .search-bar {
+      width: 90%; /* Adjust width for smaller screens */
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 10px;
+    }
+    .product {
+      width: 45%; /* Two products per row on mobile */
+      max-width: 150px; /* Limit size for smaller devices */
+      text-align: center;
+      display: none; /* Hidden by default */
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      transition: transform 0.2s;
+    }
+    .product img:hover {
+      transform: scale(1.05);
+    }
+    .product-number {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #555;
+    }
+    @media (min-width: 600px) {
+      .product {
+        width: 30%; /* Three products per row on tablets */
+      }
+    }
+    @media (min-width: 900px) {
+      .product {
+        width: 20%; /* Four products per row on larger screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Affiliate Products</h1>
+  <div class="search-container">
+    <input type="text" id="search-bar" class="search-bar" placeholder="Enter product number...">
+  </div>
+  <div class="product-grid" id="product-grid">
+    <!-- Product 23 -->
+    <div class="product" data-number="23">
+      <img src="product23.jpg" alt="Product #23" onclick="window.open('https://affiliate-link23.com', '_blank')">
+      <div class="product-number">#23</div>
+    </div>
+    <!-- Product 45 -->
+    <div class="product" data-number="45">
+      <img src="product45.jpg" alt="Product #45" onclick="window.open('https://affiliate-link45.com', '_blank')">
+      <div class="product-number">#45</div>
+    </div>
+    <!-- Add more products here -->
+  </div>
+  <script>
+    const searchBar = document.getElementById('search-bar');
+    const products = document.querySelectorAll('.product');
+
+    searchBar.addEventListener('input', () => {
+      const searchValue = searchBar.value.trim();
+      products.forEach(product => {
+        const number = product.getAttribute('data-number');
+        if (number === searchValue) {
+          product.style.display = 'block'; // Show matching product
+        } else {
+          product.style.display = 'none'; // Hide non-matching products
+        }
+      });
+    });
+  </script>
+</body>
+</html>
